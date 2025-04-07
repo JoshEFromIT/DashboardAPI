@@ -1,0 +1,20 @@
+<div class="control-panel">
+  <h1 class="retro-title">Dashboard</h1>
+  <div class="button-row">
+    <button class="retro-btn">
+      <lucide-angular name="Play" class="icon">Play</lucide-angular>
+    </button>
+    <button class="retro-btn">
+      <lucide-angular name="CloudSunRain" (click)="openWeatherModal()" class="icon">Weather</lucide-angular>
+    </button>
+    <button class="retro-btn">
+      <lucide-angular name="AlarmClock" class="icon">AlarmClock</lucide-angular>
+    </button>
+  </div>
+</div>
+<!--add the name of the method on the component that will be called on the event
+  then, include the structural directives to handle display/hide-->
+<app-weather-modal
+  *ngIf="showWeatherModal"
+  (closeRequested)="closeWeatherModal()">
+</app-weather-modal>

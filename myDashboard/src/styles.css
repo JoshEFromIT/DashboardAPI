@@ -1,0 +1,134 @@
+/* 1. Base Styling & Modern Font */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: #fafafa; /* Neutral page background */
+}
+
+/*
+  2. Fade-in animation for the panel.
+  You can keep or remove the transform if you don't want a vertical slide.
+*/
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+  3. Color cycle for the panel background (10s).
+  If you want a static color, remove this animation or set it to a single color.
+*/
+@keyframes colorCyclePanel {
+  0%   { background-color: #607D8B; } /* Blue Grey */
+  20%  { background-color: #03A9F4; } /* Light Blue */
+  40%  { background-color: #4CAF50; } /* Green */
+  60%  { background-color: #FFC107; } /* Amber */
+  80%  { background-color: #FF5722; } /* Deep Orange */
+  100% { background-color: #607D8B; } /* Back to Blue Grey */
+}
+
+/*
+  4. Control Panel
+  Positioned absolutely in the center of the screen.
+*/
+.control-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column; /* Title on top, then buttons */
+  align-items: center;    /* Center icon/buttons horizontally */
+  justify-content: center;
+
+  padding: 2rem;
+  min-width: 300px; /* Just to avoid super skinny panels */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  /* Slight scale for prominence */
+  transform: translate(-50%, -50%) scale(1.2);
+
+  /* Combine fadeIn (one-time) + colorCyclePanel (continuous) */
+  animation: fadeIn 0.5s ease-in-out,
+  colorCyclePanel 10s linear infinite;
+}
+
+/* 5. Title (e.g., "Dashboard") */
+.retro-title {
+  font-size: 3rem;
+  margin: 0 0 1rem 0;
+}
+
+/* 6. Button Row - horizontally align the buttons/icons */
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* 7. Buttons */
+.retro-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.retro-btn:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+/* 8. Icons - fixed white color (no color cycling), larger for prominence */
+.icon {
+  font-size: 2rem;
+  color: #fff !important;  /* Force white icons */
+  margin-left: 0.3rem;     /* Slight spacing from any text */
+}
+
+/* 9. Example Modal (like your Weather Modal) */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1rem;
+
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/*
+   Optional: Modal backdrop if you dim the background
+   while the modal is open.
+*/
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

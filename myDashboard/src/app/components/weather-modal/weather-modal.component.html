@@ -1,0 +1,34 @@
+<!--
+create an input for the user to input their zip code
+then we'll hit an API (a local webAPI) that will hit
+a weather service of sorts -->
+
+<!--create the modal window-->
+<div class="modal">
+    <h2>Enter Zip Code</h2>
+    <!--this will be where we bind the zipcode to a model for data transfers-->
+    <!-- create a basic input, map it's value to a new model called zipCode -->
+    <input [(ngModel)]="zipCode" placeholder="Zip Code" />
+    <!--create a button that will have an angular event
+    bound to it calling a method named "getWeather()" - that will
+    exist in our webapi -->
+    <button (click)="getWeather()">Get Weather</button>
+
+
+    <!-- the below section should only render if there are results in our weatherResult -->
+
+
+    <!-- syntax-wise - add the *ngIf (a structural directive) -->
+    <!--we put double quotes around the name of our result (which will be defined in our component)
+        and it will then be wrapped in curly brackets where we need to refer to it's properties
+     -->
+
+    <div *ngIf="weatherResult">
+        <h3>Weather for {{weatherResult.name}}</h3>
+        <p>Temperature: {{weatherResult.temperatureF}}</p>
+        <p>Description: {{weatherResult.description}}</p>
+    </div>
+
+  <button (click)="close()">Close</button>
+
+</div>
